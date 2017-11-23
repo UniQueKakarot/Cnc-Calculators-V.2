@@ -1,0 +1,136 @@
+#: kivy 1.10.0
+
+<BoxLayout>:
+    orientation: 'horizontal'
+
+<Label>:
+    font_size: 20
+
+<MainFrame>:
+    do_default_tab: False
+
+    txt1: cutting
+    txt2: mill
+    txt3: num_teeth
+    txt4: feed_tooth
+    grid1: grid1
+    popup1: popup1
+    popup2: popup2
+    box1: box1
+    box2: box2
+    box3: box3
+    box4: box4
+
+    Popup:
+        id: popup1
+        title: "Something went wrong!"
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            Label:
+                text: "A number was not entered in Cutting Speed or Mill Diameter"
+                size_hint_y: None
+                text_size: self.width, None
+                height: self.texture_size[1]
+
+            Button:
+                text: "Close"
+                on_press: popup1.dismiss()
+
+    Popup:
+        id: popup2
+        title: "Something went wrong!"
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            Label:
+                text: "A number was not entered in Number of teeth or Feed per tooth"
+                size_hint_y: None
+                text_size: self.width, None
+                height: self.texture_size[1]
+
+            Button:
+                text: "Close"
+                on_press: popup2.dismiss()
+
+
+    TabbedPanelItem:
+        text: 'Cutting Data'
+        font_size: 15
+        GridLayout:
+            id: grid1
+            cols: 1
+            padding: 10
+            spacing: 5
+
+            BoxLayout:
+                id: box1
+                Label:
+                    text: 'Cutting Speed:'
+                TextInput:
+                    id: cutting
+                    multiline: False
+                    write_tab: False
+                    focus: True
+                    text_validate_unfocus: False
+                    on_text_validate: root.calc()
+
+            BoxLayout:
+                id: box2
+                Label:
+                    text: 'Mill Diameter:'
+                TextInput:
+                    id: mill
+                    multiline: False
+                    write_tab: False
+                    text_validate_unfocus: False
+                    on_text_validate: root.calc()
+
+            BoxLayout:
+                id: box3
+                Label:
+                    text: 'Number of Teeth:'
+                TextInput:
+                    id: num_teeth
+                    multiline: False
+                    write_tab: False
+                    text_validate_unfocus: False
+                    on_text_validate: root.calc()
+
+            BoxLayout:
+                id: box4
+                Label:
+                    text: 'Feed per Tooth:'
+                TextInput:
+                    id: feed_tooth
+                    multiline: False
+                    write_tab: False
+                    on_text_validate: root.calc()
+
+            Button:
+                text: "Calculate!"
+                on_press: root.calc()
+
+            BoxLayout:
+                Label:
+                    text: "Spindle RPM: "
+                    font_size: 20
+
+                Label:
+                    text: root.res_speed
+                    font_size: 20
+
+            BoxLayout:
+                Label:
+                    text: "Feedrate: "
+                    font_size: 20
+
+                Label:
+                    text: root.res_feed
+                    font_size: 20
+
+    TabbedPanelItem:
+        text: 'Tab 2'
+        font_size: 15
