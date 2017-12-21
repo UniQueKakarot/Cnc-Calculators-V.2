@@ -1,6 +1,7 @@
 from kivy.lang import Builder
-from kivy.properties import StringProperty
+from kivy.properties import StringProperty, NumericProperty
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.textinput import TextInput
 
 import MyLabel
 
@@ -51,9 +52,11 @@ Builder.load_string(
                         text: 'Cutting Speed:'
                     TextInput:
                         id: cutting
+                        hint_text: "m/min"
                         multiline: False
                         write_tab: False
                         focus: True
+                        on_touch_down: root.select()
                         text_validate_unfocus: False
                         on_text_validate: root.calc()
         
@@ -63,6 +66,7 @@ Builder.load_string(
                         text: 'Mill Diameter:'
                     TextInput:
                         id: mill
+                        hint_text: "ø"
                         multiline: False
                         write_tab: False
                         on_text_validate: root.calc()
@@ -73,6 +77,7 @@ Builder.load_string(
                         text: 'Number of Teeth:'
                     TextInput:
                         id: num_teeth
+                        hint_text: "z"
                         multiline: False
                         write_tab: False
                         on_text_validate: root.calc()
@@ -83,6 +88,7 @@ Builder.load_string(
                         text: 'Feed per Tooth:'
                     TextInput:
                         id: feed_tooth
+                        hint_text: "mm/o"
                         multiline: False
                         write_tab: False
                         on_text_validate: root.calc()
@@ -98,7 +104,7 @@ Builder.load_string(
         
                     Label:
                         text: root.res_speed
-                        font_size: 20
+                        font_size: 30
         
                 BoxLayout:
                     MyLabel:
@@ -108,7 +114,7 @@ Builder.load_string(
         
                     MyLabel:
                         text: root.res_feed
-                        font_size: 20
+                        font_size: 30
                         bcolor: [1, 1, 1, 0.2]
                         
         TabbedPanelItem:
@@ -189,5 +195,8 @@ class CuttingSpeed(BoxLayout):
 
         self.res_speed = str(speed)
         self.res_feed = str(feed)
+        
+    def select(self):
+        TextInput().select_all()
         
         
