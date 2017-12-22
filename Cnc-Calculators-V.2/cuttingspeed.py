@@ -13,11 +13,9 @@ Builder.load_string(
 
 <Label>:
     font_size: 20
-    size_hint: 0.5, 1
 
 <TextInput>:
     font_size: 20
-    size_hint: 0.5, 1
 
 <CuttingSpeed>:
     orientation: 'vertical'
@@ -44,7 +42,7 @@ Builder.load_string(
                 id: grid1
                 cols: 1
                 padding: 10
-                spacing: 5
+                spacing: 10
         
                 BoxLayout:
                     id: box1
