@@ -1,13 +1,21 @@
 import openpyxl as pyxl
+from openpyxl import Workbook
+import os.path
 
+
+class FileHandling():
+    
+    def checkfile(self):
+        
+        """ Method for checking if the file exists and if not, generate new """
+        
+        if os.path.isfile('Database.xlsx') is True:
+            return True
+        else:
+            wb = Workbook()
+            wb.save('Database.xlsx')
 
 class CuttingSpeedData():
-    def __init__(self, cutspd, milld, noft, fpt)
-    
-    self.cutspd = cutspd
-    self.milld = milld
-    self.noft = noft
-    self.fpt = fpt
     
     def filegen(self):
         pass
