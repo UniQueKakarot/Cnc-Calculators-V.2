@@ -2,7 +2,7 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.properties import StringProperty
 from kivy.lang import Builder
 
-import MyLabel
+from Moduler.customwidgets import MyLabel
 
 Builder.load_string(
     """

@@ -7,9 +7,9 @@ Config.set('graphics', 'width', '800')
 Config.set('graphics', 'height', '600')
 Config.write()
 
-import cuttingspeed
-import spiral
-import ra
+from Moduler import cuttingspeed
+from Moduler import spiral
+from Moduler import ra
 
 class MainBody(BoxLayout):
     pass

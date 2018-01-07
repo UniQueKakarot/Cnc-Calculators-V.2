@@ -5,15 +5,16 @@ import os.path
 
 class FileHandling():
     
-    def checkfile(self):
+    def checkfile(self, data):
         
         """ Method for checking if the file exists and if not, generate new """
         
-        if os.path.isfile('Database.xlsx') is True:
+        if os.path.isfile(data) is True:
             return True
         else:
             wb = Workbook()
-            wb.save('Database.xlsx')
+            wb.save(data)
+            return False
 
 class CuttingSpeedData():
     

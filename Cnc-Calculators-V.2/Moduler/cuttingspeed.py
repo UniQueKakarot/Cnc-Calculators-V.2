@@ -3,7 +3,7 @@ from kivy.properties import StringProperty, NumericProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 
-import MyLabel
+from Moduler.customwidgets import MyLabel
 
 Builder.load_string(
 """
@@ -93,7 +93,7 @@ Builder.load_string(
         
                 Button:
                     text: "Calculate!"
-                    on_press: root.cuttingspeed.calc()
+                    on_press: root.calc()
         
                 BoxLayout:
                     Label:
