@@ -1,0 +1,7 @@
+('D:\\Python_Virtual_Environments\\Cnc_Calculators_V2_Virtualenv\\share\\glew\\bin',
+ None,
+ [],
+ 'DATA',
+ [('glew32.dll',
+   'D:\\Python_Virtual_Environments\\Cnc_Calculators_V2_Virtualenv\\share\\glew\\bin\\glew32.dll',
+   'DATA')])

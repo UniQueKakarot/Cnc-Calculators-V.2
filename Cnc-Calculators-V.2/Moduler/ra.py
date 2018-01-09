@@ -1,52 +1,26 @@
-from kivy.uix.pagelayout import PageLayout
 from kivy.uix.gridlayout import GridLayout
-from kivy.uix.boxlayout import BoxLayout
-from kivy.properties import ObjectProperty
 from kivy.lang import Builder
+from kivy.uix.dropdown import DropDown
+from kivy.uix.button import Button
+from kivy.properties import ObjectProperty
+
+from Moduler.customwidgets import MyLabel
 
 Builder.load_string(
 """
-
-<CustomDropDown>:
-    Button:
-        text: "Test1"
-        size_hint_y: None
-        height: 30
-        
-    Button:
-        text: "Test2"
-        size_hint_y: None
-        height: 30
-        
-    Button:
-        text: "Test3"
-        size_hint_y: None
-        height: 30
-        
-    Button:
-        text: "Test4"
-        size_hint_y: None
-        height: 30
-        
-    Button:
-        text: "Test5"
-        size_hint_y: None
-        height: 30
-        
-    Button:
-        text: "Test6"
-        size_hint_y: None
-        height: 30
 
 <BoxLayout>:
     orientation: 'horizontal'
     
 <Ra>:
     
-    cols: 2
+    cols: 1
+    padding: 10
+    spacing: 10
     
     BoxLayout:
-        
+        size_hint_y: None
+        height: "40dp"
         Label:
             text: "Feedrate: "
             
@@ -56,20 +30,36 @@ Builder.load_string(
             write_tab: False
             
     BoxLayout:
-        
+        size_hint_y: None
+        height: "40dp"
         Label:
-            text:
+            text: "Nose Radius: "
+        
+        TextInput:
+            hint_text: "mm"
+            multiline: False
+            write_tab: False
+    
+    BoxLayout:
+        size_hint_y: None
+        height: "40dp"
+        Button:
+            text: "Calculate!"
             
-
-                
-
+    BoxLayout:
+        size_hint_y: None
+        height: "40dp"
+        MyLabel:
+            text: "Ra: "
+            bcolor: [1, 1, 1, 0.15]
+            
+        MyLabel:
+            text:
+            bcolor: [1, 1, 1, 0.15]
+            
 """
 )
 
 
-class Ra(GridLayout):
-    
-    def custom_callback1(self):
-        print('Hello World!')
-        
+class Ra(GridLayout):        
     pass
