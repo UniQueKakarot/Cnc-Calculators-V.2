@@ -4,6 +4,9 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 
 from Moduler.customwidgets import MyLabel
+from Moduler import spiral
+from Moduler import ra
+from Moduler import datasaving
 
 Builder.load_string(
 """
@@ -25,14 +28,12 @@ Builder.load_string(
     txt3: num_teeth
     txt4: feed_tooth
     grid1: grid1
-    box1: box1
-    box2: box2
-    box3: box3
-    box4: box4
     
     TabbedPanel:
         do_default_tab: False
-        tab_pos: 'left_top'
+        tab_pos: 'top_left'
+        tab_height: 25
+        tab_width: 125
         
         TabbedPanelItem:
             text: 'Cutting Data'
@@ -42,10 +43,11 @@ Builder.load_string(
                 id: grid1
                 cols: 1
                 padding: 10
-                spacing: 10
+                spacing: 7
         
                 BoxLayout:
-                    id: box1
+                    size_hint_y: None
+                    height: "40dp"
                     Label:
                         text: 'Cutting Speed:'
                     TextInput:
@@ -54,12 +56,11 @@ Builder.load_string(
                         multiline: False
                         write_tab: False
                         focus: True
-                        on_touch_down: root.select()
-                        text_validate_unfocus: False
                         on_text_validate: root.calc()
         
                 BoxLayout:
-                    id: box2
+                    size_hint_y: None
+                    height: "40dp"
                     Label:
                         text: 'Mill Diameter:'
                     TextInput:
@@ -70,7 +71,8 @@ Builder.load_string(
                         on_text_validate: root.calc()
         
                 BoxLayout:
-                    id: box3
+                    size_hint_y: None
+                    height: "40dp"
                     Label:
                         text: 'Number of Teeth:'
                     TextInput:
@@ -81,7 +83,8 @@ Builder.load_string(
                         on_text_validate: root.calc()
         
                 BoxLayout:
-                    id: box4
+                    size_hint_y: None
+                    height: "40dp"
                     Label:
                         text: 'Feed per Tooth:'
                     TextInput:
@@ -90,12 +93,22 @@ Builder.load_string(
                         multiline: False
                         write_tab: False
                         on_text_validate: root.calc()
-        
-                Button:
-                    text: "Calculate!"
-                    on_press: root.calc()
+                
+                BoxLayout:
+                    size_hint_y: None
+                    height: "40dp"
+                    Button:
+                        text: "Calculate!"
+                        on_press: root.calc()
+                        
+                BoxLayout:
+                    Label:
+                    #Image:
+                        #source: "D:\Iver\Bilder\Kivy\Cnc-CalcV2\Test.png"
         
                 BoxLayout:
+                    size_hint_y: None
+                    height: "40dp"
                     Label:
                         text: "Spindle RPM: "
                         font_size: 20
@@ -105,6 +118,8 @@ Builder.load_string(
                         font_size: 30
         
                 BoxLayout:
+                    size_hint_y: None
+                    height: "40dp"
                     MyLabel:
                         text: "Feedrate: "
                         font_size: 20
@@ -116,8 +131,14 @@ Builder.load_string(
                         bcolor: [1, 1, 1, 0.2]
                         
         TabbedPanelItem:
-            text: 'Test'
+            text: 'Toolpath Angle'
             font_size: 15
+            Spiral:
+            
+        TabbedPanelItem:
+            text: 'Ra'
+            font_size: 15
+            Ra:
     
 """
 )
@@ -145,6 +166,13 @@ class CuttingSpeed(BoxLayout):
         mill_feed = int(mill_feed)
 
         self.results(spindel_rpm, mill_feed)
+        
+        datasaving.FileHandling().checkfile("Database.xlsx")
+        datasaving.CuttingSpeedData("Database.xlsx").cutting_meter(self.txt1.text,
+                                                                   self.txt2.text,
+                                                                   self.txt3.text,
+                                                                   self.txt4.text)
+            
 
     def spindel(self):
         

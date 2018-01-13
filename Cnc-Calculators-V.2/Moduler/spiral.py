@@ -3,6 +3,7 @@ from kivy.properties import StringProperty
 from kivy.lang import Builder
 
 from Moduler.customwidgets import MyLabel
+from Moduler import straight
 
 Builder.load_string(
     """
@@ -11,54 +12,81 @@ Builder.load_string(
 
 <Label>:
     font_size: 20
-    size_hint: 0.5, 1
     
 <TextInput>:
     font_size: 20
-    size_hint: 0.5, 1
     multiline: False
     write_tab: False
     
 <Spiral>:
-    
-    GridLayout:
-        cols: 1
-        padding: 10
-        spacing: 15
+
+    TabbedPanel:
+        do_default_tab: False
+        tab_pos: 'top_right'
+        tab_height: 25
         
-        BoxLayout:
-            Label:
-                text: "Mill Diameter:"
+        TabbedPanelItem:
+            text: 'Spiral'
+            font_size: 15
+
+            GridLayout:
+                cols: 1
+                padding: 10
+                spacing: 10
+        
+                BoxLayout:
+                    size_hint_y: None
+                    height: "40dp"
+                    Label:
+                        text: "Mill Diameter:"
+                        
+                    TextInput:
+                        focus: True
+                        hint_text: "mm"
+                    
+                BoxLayout:
+                    size_hint_y: None
+                    height: "40dp"
+                    Label:
+                        text: "Hole Diameter:"
+                        
+                    TextInput:
+                        hint_text: "ø"
+                    
+                BoxLayout:
+                    size_hint_y: None
+                    height: "40dp"
+                    Label:
+                        text: "Step/Pitch:"
+                        
+                    TextInput:
+                        hint_text: "Z step"
                 
-            TextInput:
-                focus: True
-            
-        BoxLayout:
-            Label:
-                text: "Hole Diameter:"
-                
-            TextInput:
-            
-        BoxLayout:
-            Label:
-                text: "Step/Pitch:"
-                
-            TextInput:
-            
-        Button:
-            text: "Calc"
-            size_hint: 0.5, 1
-            
-        BoxLayout:
-            MyLabel:
-                text: "Angle:"
-                font_size: 20
-                bcolor: [1, 1, 1, 0.15]
-                
-            MyLabel:
-                text: root.angle
-                font_size: 20
-                bcolor: [1, 1, 1, 0.15]
+                BoxLayout:
+                    size_hint_y: None
+                    height: "40dp"
+                    Button:
+                        text: "Calculate"
+                        
+                Label:
+                    
+                BoxLayout:
+                    size_hint_y: None
+                    height: "40dp"
+                    MyLabel:
+                        text: "Angle:"
+                        font_size: 20
+                        bcolor: [1, 1, 1, 0.15]
+                        
+                    MyLabel:
+                        text: root.angle
+                        font_size: 20
+                        bcolor: [1, 1, 1, 0.15]
+                            
+        TabbedPanelItem:
+            text: 'Straigth'
+            font_size: 15
+            Straight:
                 
     """
 )
