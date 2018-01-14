@@ -1,6 +1,7 @@
 from kivy.uix.floatlayout import FloatLayout
 from kivy.properties import StringProperty
 from kivy.lang import Builder
+from math import sin, degrees
 
 from Moduler.customwidgets import MyLabel
 from Moduler import straight
@@ -19,6 +20,9 @@ Builder.load_string(
     write_tab: False
     
 <Spiral>:
+    milldia: milldia
+    holedia: holedia
+    zstep: zstep
 
     TabbedPanel:
         do_default_tab: False
@@ -41,8 +45,10 @@ Builder.load_string(
                         text: "Mill Diameter:"
                         
                     TextInput:
+                        id: milldia
                         focus: True
                         hint_text: "mm"
+                        on_text_validate: root.calc()
                     
                 BoxLayout:
                     size_hint_y: None
@@ -51,7 +57,9 @@ Builder.load_string(
                         text: "Hole Diameter:"
                         
                     TextInput:
+                        id: holedia
                         hint_text: "ø"
+                        on_text_validate: root.calc()
                     
                 BoxLayout:
                     size_hint_y: None
@@ -60,13 +68,16 @@ Builder.load_string(
                         text: "Step/Pitch:"
                         
                     TextInput:
+                        id: zstep
                         hint_text: "Z step"
+                        on_text_validate: root.calc()
                 
                 BoxLayout:
                     size_hint_y: None
                     height: "40dp"
                     Button:
                         text: "Calculate"
+                        on_press: root.calc()
                         
                 Label:
                     
@@ -79,7 +90,7 @@ Builder.load_string(
                         bcolor: [1, 1, 1, 0.15]
                         
                     MyLabel:
-                        text: root.angle
+                        text: root.res_angle
                         font_size: 20
                         bcolor: [1, 1, 1, 0.15]
                             
@@ -93,10 +104,60 @@ Builder.load_string(
 
 class Spiral(FloatLayout):
     
-    angle = StringProperty()
+    res_angle = StringProperty()
     
     def __init__(self, **kwargs):
         super(Spiral, self).__init__(**kwargs)
         
-    def dummy(self):
-        print('Hello World!')
+    def calc(self):
+        
+        circumference = self.circumference()
+        angle = self.angle(circumference)
+        
+        self.results(angle)
+    
+    def circumference(self):
+        
+        """ Calculating the circumference of the path the mill will be taking """
+        
+        try:
+            milldia = self.milldia.text
+            milldia = milldia.replace(',', '.')
+            milldia = float(milldia)
+            
+            holedia = self.holedia.text
+            holedia = holedia.replace(',', '.')
+            holedia = float(holedia)
+            
+            cf = (holedia - milldia) * 3.14
+        except ValueError:
+            cf = 0
+        
+        return cf
+    
+    def angle(self, circumference):
+        
+        """ Calculating the angle of the toolpath """
+        
+        cf = circumference
+        
+        try:
+            zstep = self.zstep.text
+            zstep = zstep.replace(',', '.')
+            zstep = float(zstep)
+            
+            angle = (sin(1.57079633) * zstep) / cf
+            angle = degrees(angle)
+        except(ValueError, ZeroDivisionError):
+            angle = "Please input values"
+        
+        return angle
+    
+    def results(self, angle):
+        
+        """ Updating the UI label with the results """
+        
+        self.res_angle = str(angle)
+
+        
+        

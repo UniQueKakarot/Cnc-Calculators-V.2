@@ -168,10 +168,8 @@ class CuttingSpeed(BoxLayout):
         self.results(spindel_rpm, mill_feed)
         
         datasaving.FileHandling().checkfile("Database.xlsx")
-        datasaving.CuttingSpeedData("Database.xlsx").cutting_meter(self.txt1.text,
-                                                                   self.txt2.text,
-                                                                   self.txt3.text,
-                                                                   self.txt4.text)
+        datasaving.CuttingSpeedData("Database.xlsx").filesave(self.txt1.text, self.txt2.text,
+                                                              self.txt3.text, self.txt4.text)
             
 
     def spindel(self):

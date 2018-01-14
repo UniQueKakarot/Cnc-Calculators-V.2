@@ -45,6 +45,11 @@ Builder.load_string(
         height: "40dp"
         Button:
             text: "Calculate!"
+    
+    BoxLayout:
+        #size_hint_y: None
+        #height: "200dp"
+        Label:
             
     BoxLayout:
         size_hint_y: None

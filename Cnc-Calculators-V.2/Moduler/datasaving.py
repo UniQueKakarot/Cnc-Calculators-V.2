@@ -2,7 +2,7 @@ import openpyxl as pyxl
 from openpyxl import Workbook
 from openpyxl import load_workbook
 import os
-import os.path
+#import os.path
 
 
 class FileHandling():
@@ -21,6 +21,9 @@ class FileHandling():
 class CuttingSpeedData():
     
     def __init__(self, data):
+        """ Checking if the xlsx file has all the necessities,
+            and if not generate it """
+            
         self.data = data
         
         self.wb = load_workbook(self.data)
@@ -44,7 +47,10 @@ class CuttingSpeedData():
 
         self.wb.save(self.data)
     
-    def cutting_meter(self, cuttingdata, mill, teeth, tooth):
+    def filesave(self, cuttingdata, mill, teeth, tooth):
+        
+        """ Collecting what is written in the textinput boxes for the
+            cuttingspeed calc and saving it to a xlsx file """
         
         ws = self.wb["Cutting Speed"]
         
