@@ -151,7 +151,7 @@ class Spiral(FloatLayout):
         except(ValueError, ZeroDivisionError):
             angle = "Please input values"
         
-        return angle
+        return round(angle, 2)
     
     def results(self, angle):
         

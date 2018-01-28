@@ -66,7 +66,8 @@ class CuttingSpeedData():
         except ValueError:
             pass
         try:
-            mill = int(mill)
+            mill = mill.replace(',', '.')
+            mill = float(mill)
         except ValueError:
             pass
         try:
@@ -74,6 +75,7 @@ class CuttingSpeedData():
         except ValueError:
             pass
         try:
+            tooth = tooth.replace(',', '.')
             tooth = float(tooth)
         except ValueError:
             pass
