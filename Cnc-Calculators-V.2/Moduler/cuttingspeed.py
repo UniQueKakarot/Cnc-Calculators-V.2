@@ -7,6 +7,7 @@ from Moduler.customwidgets import MyLabel
 from Moduler import spiral
 from Moduler import ra
 from Moduler import datasaving
+from Moduler import materialremoval
 
 Builder.load_string(
 """
@@ -38,111 +39,103 @@ Builder.load_string(
         TabbedPanelItem:
             text: 'Cutting Data'
             font_size: 15
-            
-            TabbedPanel:
-                do_default_tab: False
-                tab_pos: 'top_right'
-                tab_height: 25
-                
-                TabbedPanelItem:
-                    text: 'Basic'
-                    font_size: 15
     
-                    GridLayout:
-                        id: grid1
-                        cols: 1
-                        padding: 10
-                        spacing: 7
+            GridLayout:
+                id: grid1
+                cols: 1
+                padding: 10
+                spacing: 7
+        
+                BoxLayout:
+                    size_hint_y: None
+                    height: "40dp"
+                    Label:
+                        text: 'Cutting Speed:'
+                    TextInput:
+                        id: cutting
+                        hint_text: "m/min"
+                        multiline: False
+                        write_tab: False
+                        focus: True
+                        on_text_validate: root.calc()
+        
+                BoxLayout:
+                    size_hint_y: None
+                    height: "40dp"
+                    Label:
+                        text: 'Mill Diameter:'
+                    TextInput:
+                        id: mill
+                        hint_text: "ø"
+                        multiline: False
+                        write_tab: False
+                        on_text_validate: root.calc()
+        
+                BoxLayout:
+                    size_hint_y: None
+                    height: "40dp"
+                    Label:
+                        text: 'Number of Teeth:'
+                    TextInput:
+                        id: num_teeth
+                        hint_text: "z"
+                        multiline: False
+                        write_tab: False
+                        on_text_validate: root.calc()
+        
+                BoxLayout:
+                    size_hint_y: None
+                    height: "40dp"
+                    Label:
+                        text: 'Feed per Tooth:'
+                    TextInput:
+                        id: feed_tooth
+                        hint_text: "mm/o"
+                        multiline: False
+                        write_tab: False
+                        on_text_validate: root.calc()
                 
-                        BoxLayout:
-                            size_hint_y: None
-                            height: "40dp"
-                            Label:
-                                text: 'Cutting Speed:'
-                            TextInput:
-                                id: cutting
-                                hint_text: "m/min"
-                                multiline: False
-                                write_tab: False
-                                focus: True
-                                on_text_validate: root.calc()
-                
-                        BoxLayout:
-                            size_hint_y: None
-                            height: "40dp"
-                            Label:
-                                text: 'Mill Diameter:'
-                            TextInput:
-                                id: mill
-                                hint_text: "ø"
-                                multiline: False
-                                write_tab: False
-                                on_text_validate: root.calc()
-                
-                        BoxLayout:
-                            size_hint_y: None
-                            height: "40dp"
-                            Label:
-                                text: 'Number of Teeth:'
-                            TextInput:
-                                id: num_teeth
-                                hint_text: "z"
-                                multiline: False
-                                write_tab: False
-                                on_text_validate: root.calc()
-                
-                        BoxLayout:
-                            size_hint_y: None
-                            height: "40dp"
-                            Label:
-                                text: 'Feed per Tooth:'
-                            TextInput:
-                                id: feed_tooth
-                                hint_text: "mm/o"
-                                multiline: False
-                                write_tab: False
-                                on_text_validate: root.calc()
+                BoxLayout:
+                    size_hint_y: None
+                    height: "40dp"
+                    Button:
+                        text: "Calculate!"
+                        on_press: root.calc()
                         
-                        BoxLayout:
-                            size_hint_y: None
-                            height: "40dp"
-                            Button:
-                                text: "Calculate!"
-                                on_press: root.calc()
-                                
-                        BoxLayout:
-                            Label:
-                            #Image:
-                                #source: "D:\Iver\Bilder\Kivy\Cnc-CalcV2\Test.png"
-                
-                        BoxLayout:
-                            size_hint_y: None
-                            height: "40dp"
-                            Label:
-                                text: "Spindle RPM: "
-                                font_size: 20
-                
-                            Label:
-                                text: root.res_speed
-                                font_size: 30
-                
-                        BoxLayout:
-                            size_hint_y: None
-                            height: "40dp"
-                            MyLabel:
-                                text: "Feedrate: "
-                                font_size: 20
-                                bcolor: [1, 1, 1, 0.2]
-                
-                            MyLabel:
-                                text: root.res_feed
-                                font_size: 30
-                                bcolor: [1, 1, 1, 0.2]
-                                
-                TabbedPanelItem:
-                    text: 'Advanced'
-                    font_size: 15
+                BoxLayout:
+                    Label:
+                    #Image:
+                        #source: "D:\Iver\Bilder\Kivy\Cnc-CalcV2\Test.png"
+        
+                BoxLayout:
+                    size_hint_y: None
+                    height: "40dp"
+                    Label:
+                        text: "Spindle RPM: "
+                        font_size: 20
+        
+                    Label:
+                        text: root.res_speed
+                        font_size: 30
+        
+                BoxLayout:
+                    size_hint_y: None
+                    height: "40dp"
+                    MyLabel:
+                        text: "Feedrate: "
+                        font_size: 20
+                        bcolor: [1, 1, 1, 0.2]
+        
+                    MyLabel:
+                        text: root.res_feed
+                        font_size: 30
+                        bcolor: [1, 1, 1, 0.2]
                         
+        TabbedPanelItem:
+            text: 'MRR'
+            font_size: 15
+            MaterialRemoval:
+            
         TabbedPanelItem:
             text: 'Toolpath Angle'
             font_size: 15
@@ -152,6 +145,7 @@ Builder.load_string(
             text: 'Ra'
             font_size: 15
             Ra:
+            
     
 """
 )

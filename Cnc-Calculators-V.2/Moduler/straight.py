@@ -37,7 +37,7 @@ Builder.load_string(
         Label:
             text: "Step/Pitch: "
         TextInput:
-            hint_text: "Angle"
+            hint_text: "Z Step"
             multiline: False
             write_tab: False
             
