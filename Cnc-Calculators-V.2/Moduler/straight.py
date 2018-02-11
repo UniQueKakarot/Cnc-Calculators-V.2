@@ -1,6 +1,7 @@
 from kivy.uix.gridlayout import GridLayout
 from kivy.properties import StringProperty
 from kivy.lang import Builder
+from math import sin, degrees
 
 from Moduler.customwidgets import MyLabel
 
@@ -17,6 +18,10 @@ Builder.load_string(
     font_size: 20
 
 <Straight>:
+
+    tpl: tpl
+    zstep: zstep
+    
     cols: 1
     padding: 10
     spacing: 10
@@ -27,6 +32,7 @@ Builder.load_string(
         Label:
             text: "Toolpath Lenght: "
         TextInput:
+            id: tpl
             hint_text: "mm"
             multiline: False
             write_tab: False
@@ -37,6 +43,7 @@ Builder.load_string(
         Label:
             text: "Step/Pitch: "
         TextInput:
+            id: zstep
             hint_text: "Z Step"
             multiline: False
             write_tab: False
@@ -46,6 +53,7 @@ Builder.load_string(
         height: "40dp"
         Button:
             text: "Calculate"
+            on_press: root.calc()
             
     Label:
             
@@ -66,6 +74,37 @@ Builder.load_string(
 )
 
 class Straight(GridLayout):
+    
     angle = StringProperty()
-    pass
+    
+    def calc(self):
+        
+        """ Doing the mathy thingy """
+        
+        try:
+            tpl = self.tpl.text
+            tpl = tpl.replace(',', '.')
+            tpl = float(tpl)
+        except ValueError:
+            tpl = 0
+            self.angle = "Please input values"
+        
+        try:    
+            zstep = self.zstep.text
+            zstep = zstep.replace(',', '.')
+            zstep = float(zstep)
+        except ValueError:
+            zstep = 0
+            self.angle = "Please input values"
+        try:    
+            result = (sin(1.570796) * zstep) / tpl
+        except ZeroDivisionError:
+            self.angle = "Don't divide by zero you naughty boi"
+            
+        
+        result = degrees(result)
+        result = round(result, 2)
+        
+        self.angle = str(result)
+
     
