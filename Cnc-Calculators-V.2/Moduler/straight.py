@@ -103,9 +103,5 @@ class Straight(GridLayout):
             result = round(result, 2)
         except (ZeroDivisionError, TypeError):
             result = "Please input values"
-            pass
-
-
-
 
         self.angle = str(result)
