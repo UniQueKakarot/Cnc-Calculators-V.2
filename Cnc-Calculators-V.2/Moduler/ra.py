@@ -11,6 +11,8 @@ Builder.load_string(
 <BoxLayout>:
     orientation: 'horizontal'
 
+<MyTextInput>:
+
 <Ra>:
 
     feed: feed
@@ -76,9 +78,7 @@ class MyTextInput(TextInput):
 
     def on_focus(self, instance, value):
         if value:
-            print('User focused', instance)
-        else:
-            print('User defocused', instance)
+            self.text = ""
 
 
 class Ra(GridLayout):
