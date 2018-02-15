@@ -4,6 +4,7 @@ from kivy.properties import StringProperty
 from kivy.uix.textinput import TextInput
 
 from Moduler.customwidgets import MyLabel
+from Moduler.customwidgets import MyTextInput
 
 Builder.load_string(
 """
@@ -41,7 +42,7 @@ Builder.load_string(
         Label:
             text: "Nose Radius: "
 
-        TextInput:
+        MyTextInput:
             id: nr
             hint_text: "mm"
             multiline: False
@@ -73,12 +74,6 @@ Builder.load_string(
 
 """
 )
-
-class MyTextInput(TextInput):
-
-    def on_focus(self, instance, value):
-        if value:
-            self.text = ""
 
 
 class Ra(GridLayout):

@@ -4,6 +4,7 @@ from kivy.lang import Builder
 from math import sin, degrees
 
 from Moduler.customwidgets import MyLabel
+from Moduler.customwidgets import MyTextInput
 
 Builder.load_string(
     """
@@ -31,7 +32,7 @@ Builder.load_string(
         height: "40dp"
         Label:
             text: "Toolpath Lenght: "
-        TextInput:
+        MyTextInput:
             id: tpl
             hint_text: "mm"
             multiline: False
@@ -43,7 +44,7 @@ Builder.load_string(
         height: "40dp"
         Label:
             text: "Step/Pitch: "
-        TextInput:
+        MyTextInput:
             id: zstep
             hint_text: "Z Step"
             multiline: False
