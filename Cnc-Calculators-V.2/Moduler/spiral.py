@@ -6,6 +6,7 @@ from math import sin, degrees
 from Moduler.customwidgets import MyLabel
 from Moduler.customwidgets import MyTextInput
 from Moduler import straight
+from Moduler import datasaving
 
 Builder.load_string(
     """
@@ -116,6 +117,11 @@ class Spiral(FloatLayout):
         angle = self.angle(circumference)
 
         self.results(angle)
+
+        datasaving.SpiralData("Database.xlsx").filesave(self.milldia.text,
+                                                        self.holedia.text,
+                                                        self.zstep.text,
+                                                        angle)
 
     def circumference(self):
 
