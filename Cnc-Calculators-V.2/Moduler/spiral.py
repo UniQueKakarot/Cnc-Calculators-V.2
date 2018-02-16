@@ -48,7 +48,7 @@ Builder.load_string(
                     MyTextInput:
                         id: milldia
                         focus: True
-                        hint_text: "mm"
+                        hint_text: "ø"
                         on_text_validate: root.calc()
 
                 BoxLayout:
