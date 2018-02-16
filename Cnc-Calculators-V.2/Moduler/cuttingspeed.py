@@ -5,9 +5,9 @@ from kivy.uix.textinput import TextInput
 
 from Moduler.customwidgets import MyLabel
 from Moduler.customwidgets import MyTextInput
+from Moduler.datasaving import CuttingSpeedData
 from Moduler import spiral
 from Moduler import ra
-from Moduler import datasaving
 from Moduler import materialremoval
 
 Builder.load_string(
@@ -175,10 +175,10 @@ class CuttingSpeed(BoxLayout):
 
         self.results(spindel_rpm, mill_feed)
 
-        datasaving.CuttingSpeedData("Database.xlsx").filesave(self.txt1.text,
-                                                              self.txt2.text,
-                                                              self.txt3.text,
-                                                              self.txt4.text)
+        CuttingSpeedData("Database.xlsx").filesave(self.txt1.text,
+                                                   self.txt2.text,
+                                                   self.txt3.text,
+                                                   self.txt4.text)
 
     def spindel(self):
 

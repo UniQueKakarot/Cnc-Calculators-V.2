@@ -175,7 +175,7 @@ class MaterialRemovalData():
             wb.save(data)
 
 
-class SpiralData():
+class HelixData():
 
     def __init__(self, data):
 
@@ -243,6 +243,161 @@ class SpiralData():
         ws.cell(row=row, column=4, value=zstep)
         ws.cell(row=row, column=5, value=angle)
         ws.cell(row=row, column=6, value='°')
+
+        try:
+            self.wb.save(self.data)
+        except PermissionError:
+            print("Can't access file, please close if open!")
+
+    def checkfile(self, data):
+
+        """ Method for checking if the file exists and if not, generate new """
+
+        if os.path.isfile(data) is True:
+            pass
+        else:
+            wb = Workbook()
+            wb.save(data)
+
+
+class RampData():
+
+    def __init__(self, data):
+
+        """ Checking if the xlsx file has all the necessities,
+            and if not generate it """
+
+        self.data = data
+
+        self.checkfile(self.data)
+
+        self.wb = load_workbook(self.data)
+
+        test = 0
+
+        for i in self.wb.get_sheet_names():
+            if i == "Ramp Angle":
+                test = 1
+
+        if test == 0:
+            self.ws = self.wb.create_sheet("Ramp Angle")
+
+            try:
+                x = self.wb.get_sheet_by_name('Sheet')
+                self.wb.remove_sheet(x)
+            except KeyError:
+                print("Worksheet does not exist, carrying on.")
+
+            ws = self.wb["Ramp Angle"]
+            ws.cell(row=2, column=2, value="Toolpath Length")
+            ws.cell(row=2, column=3, value="Step/Pitch")
+            ws.cell(row=2, column=4, value="Angle of Decent")
+
+            self.wb.save(self.data)
+
+    def filesave(self, tpl, zstep, angle):
+
+        """ Collecting what is written in the textinput boxes for the
+            Ramp Angle module and saving it to a xlsx file """
+
+        ws = self.wb["Ramp Angle"]
+
+        row = 3
+        while ws.cell(row=row, column=2).value != None:
+            row += 1
+
+        try:
+            tpl = tpl.replace(',', '.')
+            tpl = float(tpl)
+        except ValueError:
+            pass
+        try:
+            zstep = zstep.replace(',', '.')
+            zstep = float(zstep)
+        except ValueError:
+            pass
+
+        ws.cell(row=row, column=2, value=tpl)
+        ws.cell(row=row, column=3, value=zstep)
+        ws.cell(row=row, column=4, value=angle)
+        ws.cell(row=row, column=5, value='°')
+
+        try:
+            self.wb.save(self.data)
+        except PermissionError:
+            print("Can't access file, please close if open!")
+
+    def checkfile(self, data):
+
+        """ Method for checking if the file exists and if not, generate new """
+
+        if os.path.isfile(data) is True:
+            pass
+        else:
+            wb = Workbook()
+            wb.save(data)
+
+
+class SurfaceRaData():
+
+    def __init__(self, data):
+
+        """ Checking if the xlsx file has all the necessities,
+            and if not generate it """
+
+        self.data = data
+
+        self.checkfile(self.data)
+
+        self.wb = load_workbook(self.data)
+
+        test = 0
+
+        for i in self.wb.get_sheet_names():
+            if i == "Surface Roughness":
+                test = 1
+
+        if test == 0:
+            self.ws = self.wb.create_sheet("Surface Roughness")
+
+            try:
+                x = self.wb.get_sheet_by_name('Sheet')
+                self.wb.remove_sheet(x)
+            except KeyError:
+                print("Worksheet does not exist, carrying on.")
+
+            ws = self.wb["Surface Roughness"]
+            ws.cell(row=2, column=2, value="Feed per Turn")
+            ws.cell(row=2, column=3, value="Nose Radius")
+            ws.cell(row=2, column=4, value="Ra")
+
+            self.wb.save(self.data)
+
+    def filesave(self, feed, nr, ra):
+
+        """ Collecting what is written in the textinput boxes for the
+            Ra module and saving it to a xlsx file """
+
+        ws = self.wb["Surface Roughness"]
+
+        row = 3
+        while ws.cell(row=row, column=2).value != None:
+            row += 1
+
+        try:
+            feed = feed.replace(',', '.')
+            feed = float(feed)
+        except ValueError:
+            pass
+        try:
+            nr = nr.replace(',', '.')
+            nr = float(nr)
+        except ValueError:
+            pass
+
+        ws.cell(row=row, column=2, value=feed)
+        ws.cell(row=row, column=3, value=nr)
+        ws.cell(row=row, column=4, value=ra)
 
         try:
             self.wb.save(self.data)

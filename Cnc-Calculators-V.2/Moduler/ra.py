@@ -5,6 +5,7 @@ from kivy.uix.textinput import TextInput
 
 from Moduler.customwidgets import MyLabel
 from Moduler.customwidgets import MyTextInput
+from Moduler.datasaving import SurfaceRaData
 
 Builder.load_string(
 """
@@ -102,3 +103,7 @@ class Ra(GridLayout):
             result = "Please input valid values"
 
         self.ra = str(result)
+
+        SurfaceRaData("Database.xlsx").filesave(self.feed.text,
+                                                self.nr.text,
+                                                result)

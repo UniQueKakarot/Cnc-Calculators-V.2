@@ -6,7 +6,7 @@ from math import sin, degrees
 from Moduler.customwidgets import MyLabel
 from Moduler.customwidgets import MyTextInput
 from Moduler import straight
-from Moduler import datasaving
+from Moduler.datasaving import HelixData
 
 Builder.load_string(
     """
@@ -32,7 +32,7 @@ Builder.load_string(
         tab_height: 25
 
         TabbedPanelItem:
-            text: 'Spiral'
+            text: 'Helix Angle'
             font_size: 15
 
             GridLayout:
@@ -97,7 +97,7 @@ Builder.load_string(
                         bcolor: [1, 1, 1, 0.15]
 
         TabbedPanelItem:
-            text: 'Straigth'
+            text: 'Ramp Angle'
             font_size: 15
             Straight:
 
@@ -118,10 +118,10 @@ class Spiral(FloatLayout):
 
         self.results(angle)
 
-        datasaving.SpiralData("Database.xlsx").filesave(self.milldia.text,
-                                                        self.holedia.text,
-                                                        self.zstep.text,
-                                                        angle)
+        HelixData("Database.xlsx").filesave(self.milldia.text,
+                                            self.holedia.text,
+                                            self.zstep.text,
+                                            angle)
 
     def circumference(self):
 

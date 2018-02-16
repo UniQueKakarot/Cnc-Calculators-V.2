@@ -5,6 +5,7 @@ from math import sin, degrees
 
 from Moduler.customwidgets import MyLabel
 from Moduler.customwidgets import MyTextInput
+from Moduler.datasaving import RampData
 
 Builder.load_string(
     """
@@ -106,3 +107,7 @@ class Straight(GridLayout):
             result = "Please input values"
 
         self.angle = str(result)
+
+        RampData("Database.xlsx").filesave(self.tpl.text,
+                                           self.zstep.text,
+                                           result)

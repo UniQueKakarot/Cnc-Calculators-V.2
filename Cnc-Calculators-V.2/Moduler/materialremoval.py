@@ -4,7 +4,7 @@ from kivy.properties import StringProperty
 
 from Moduler.customwidgets import MyLabel
 from Moduler.customwidgets import MyTextInput
-from Moduler import datasaving
+from Moduler.datasaving import MaterialRemovalData
 
 Builder.load_string(
 """
@@ -93,10 +93,10 @@ class MaterialRemoval(GridLayout):
         result = self.mrrcalc()
         self.results(result)
 
-        datasaving.MaterialRemovalData("Database.xlsx").filesave(self.ap.text,
-                                                                 self.ae.text,
-                                                                 self.feed.text,
-                                                                 result)
+        MaterialRemovalData("Database.xlsx").filesave(self.ap.text,
+                                                      self.ae.text,
+                                                      self.feed.text,
+                                                      result)
 
     def mrrcalc(self):
 
