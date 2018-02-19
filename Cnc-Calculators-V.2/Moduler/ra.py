@@ -1,14 +1,13 @@
 from kivy.uix.gridlayout import GridLayout
 from kivy.lang import Builder
 from kivy.properties import StringProperty
-from kivy.uix.textinput import TextInput
 
 from Moduler.customwidgets import MyLabel
 from Moduler.customwidgets import MyTextInput
 from Moduler.datasaving import SurfaceRaData
 
 Builder.load_string(
-"""
+    """
 
 <BoxLayout>:
     orientation: 'horizontal'
@@ -73,7 +72,7 @@ Builder.load_string(
             text: root.ra
             bcolor: [1, 1, 1, 0.15]
 
-"""
+    """
 )
 
 
