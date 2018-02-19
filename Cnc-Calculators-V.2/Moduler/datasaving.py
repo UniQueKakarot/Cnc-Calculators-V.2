@@ -43,7 +43,7 @@ class CuttingSpeedData():
     def filesave(self, cuttingdata, mill, teeth, tooth):
 
         """ Collecting what is written in the textinput boxes for the
-            cuttingspeed calc and saving it to a xlsx file """
+            cuttingspeed module and saving it to a xlsx file """
 
         ws = self.wb["Cutting Speed"]
 
@@ -54,21 +54,21 @@ class CuttingSpeedData():
         try:
             cuttingdata = int(cuttingdata)
         except ValueError:
-            pass
+            cuttingdata = 0
         try:
             mill = mill.replace(',', '.')
             mill = float(mill)
-        except(ValueError, AttributeError):
-            pass
+        except ValueError:
+            mill = 0
         try:
             teeth = int(teeth)
-        except(ValueError, AttributeError):
-            pass
+        except ValueError:
+            teeth = 0
         try:
             tooth = tooth.replace(',', '.')
             tooth = float(tooth)
-        except(ValueError, AttributeError):
-            pass
+        except ValueError:
+            tooth = 0
 
         ws.cell(row=row, column=2, value=cuttingdata)
         ws.cell(row=row, column=3, value=mill)
@@ -142,21 +142,26 @@ class MaterialRemovalData():
             depthcut = depthcut.replace(',', '.')
             depthcut = float(depthcut)
         except ValueError:
-            pass
+            depthcut = 0
         try:
             widthcut = widthcut.replace(',', '.')
             widthcut = float(widthcut)
         except ValueError:
-            pass
+            widthcut = 0
         try:
             feedrate = int(feedrate)
         except ValueError:
-            pass
+            feedrate = 0
 
         ws.cell(row=row, column=2, value=depthcut)
         ws.cell(row=row, column=3, value=widthcut)
         ws.cell(row=row, column=4, value=feedrate)
-        ws.cell(row=row, column=5, value=mrr)
+
+        if mrr == "Please input values":
+            ws.cell(row=row, column=5, value=0)
+        else:
+            ws.cell(row=row, column=5, value=mrr)
+
         ws.cell(row=row, column=6, value='cm³/min')
 
         try:
@@ -214,7 +219,7 @@ class HelixData():
     def filesave(self, milldia, holedia, zstep, angle):
 
         """ Collecting what is written in the textinput boxes for the
-            cuttingspeed calc and saving it to a xlsx file """
+            Spiral module and saving it to a xlsx file """
 
         ws = self.wb["Helix Angle"]
 
@@ -226,22 +231,27 @@ class HelixData():
             milldia = milldia.replace(',', '.')
             milldia = float(milldia)
         except ValueError:
-            pass
+            milldia = 0
         try:
             holedia = holedia.replace(',', '.')
             holedia = float(holedia)
         except ValueError:
-            pass
+            holedia = 0
         try:
             zstep = zstep.replace(',', '.')
             zstep = float(zstep)
         except ValueError:
-            pass
+            zstep = 0
 
         ws.cell(row=row, column=2, value=milldia)
         ws.cell(row=row, column=3, value=holedia)
         ws.cell(row=row, column=4, value=zstep)
-        ws.cell(row=row, column=5, value=angle)
+
+        if angle == "Please input values":
+            ws.cell(row=row, column=5, value=0)
+        else:
+            ws.cell(row=row, column=5, value=angle)
+
         ws.cell(row=row, column=6, value='°')
 
         try:
@@ -310,16 +320,21 @@ class RampData():
             tpl = tpl.replace(',', '.')
             tpl = float(tpl)
         except ValueError:
-            pass
+            tpl = 0
         try:
             zstep = zstep.replace(',', '.')
             zstep = float(zstep)
         except ValueError:
-            pass
+            zstep = 0
 
         ws.cell(row=row, column=2, value=tpl)
         ws.cell(row=row, column=3, value=zstep)
-        ws.cell(row=row, column=4, value=angle)
+
+        if angle == "Please input values":
+            ws.cell(row=row, column=4, value=0)
+        else:
+            ws.cell(row=row, column=4, value=angle)
+
         ws.cell(row=row, column=5, value='°')
 
         try:
@@ -388,16 +403,20 @@ class SurfaceRaData():
             feed = feed.replace(',', '.')
             feed = float(feed)
         except ValueError:
-            pass
+            feed = 0
         try:
             nr = nr.replace(',', '.')
             nr = float(nr)
         except ValueError:
-            pass
+            nr = 0
 
         ws.cell(row=row, column=2, value=feed)
         ws.cell(row=row, column=3, value=nr)
-        ws.cell(row=row, column=4, value=ra)
+
+        if ra == "Please input values":
+            ws.cell(row=row, column=4, value=0)
+        else:
+            ws.cell(row=row, column=4, value=ra)
 
         try:
             self.wb.save(self.data)

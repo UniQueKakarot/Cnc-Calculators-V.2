@@ -1,5 +1,5 @@
 from kivy.lang import Builder
-from kivy.properties import StringProperty, NumericProperty
+from kivy.properties import StringProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 
@@ -227,3 +227,5 @@ class CuttingSpeed(BoxLayout):
 
         self.res_speed = str(speed)
         self.res_feed = str(feed)
+
+

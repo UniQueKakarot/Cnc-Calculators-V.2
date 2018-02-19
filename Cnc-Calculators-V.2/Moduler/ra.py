@@ -100,7 +100,7 @@ class Ra(GridLayout):
             result = ((feed**2) / (nr*24)) * 1000
             result = round(result, 2)
         except(TypeError, ZeroDivisionError):
-            result = "Please input valid values"
+            result = "Please input values"
 
         self.ra = str(result)
 
