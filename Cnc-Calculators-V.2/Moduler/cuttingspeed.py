@@ -11,7 +11,7 @@ from Moduler import ra
 from Moduler import materialremoval
 
 Builder.load_string(
-"""
+    """
 
 <BoxLayout>:
     orientation: 'horizontal'
@@ -148,7 +148,7 @@ Builder.load_string(
             Ra:
 
 
-"""
+    """
 )
 
 class CuttingSpeed(BoxLayout):
