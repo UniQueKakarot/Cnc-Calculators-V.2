@@ -71,7 +71,7 @@ Builder.load_string(
             bcolor: [1, 1, 1, 0.15]
 
         MyLabel:
-            text: root.ra
+            text: root.surface_ra
             bcolor: [1, 1, 1, 0.15]
 
     """
