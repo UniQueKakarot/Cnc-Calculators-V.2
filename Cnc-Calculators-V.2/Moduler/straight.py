@@ -1,7 +1,9 @@
+""" This module contains the Ramp angle calculator """
+
+from math import sin, degrees
 from kivy.uix.gridlayout import GridLayout
 from kivy.properties import StringProperty
 from kivy.lang import Builder
-from math import sin, degrees
 
 from Moduler.customwidgets import MyLabel
 from Moduler.customwidgets import MyTextInput
@@ -56,7 +58,7 @@ Builder.load_string(
         size_hint_y: None
         height: "40dp"
         Button:
-            text: "Calculate"
+            text: "Calculate!"
             on_press: root.calc()
 
     Label:
@@ -78,6 +80,8 @@ Builder.load_string(
 )
 
 class Straight(GridLayout):
+
+    """ Main class for the Ramp Angle module """
 
     angle = StringProperty()
 

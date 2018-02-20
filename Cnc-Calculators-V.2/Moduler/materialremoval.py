@@ -1,3 +1,5 @@
+""" This module hold the material removal calculator"""
+
 from kivy.lang import Builder
 from kivy.uix.gridlayout import GridLayout
 from kivy.properties import StringProperty
@@ -7,7 +9,7 @@ from Moduler.customwidgets import MyTextInput
 from Moduler.datasaving import MaterialRemovalData
 
 Builder.load_string(
-"""
+    """
 <MaterialRemoval>:
     cols: 1
     padding: 10
@@ -61,7 +63,7 @@ Builder.load_string(
         size_hint_y: None
         height: "40dp"
         Button:
-            text: "Calculate"
+            text: "Calculate!"
             on_press: root.calc()
 
     Label:
@@ -80,15 +82,19 @@ Builder.load_string(
             bcolor: [1, 1, 1, 0.15]
 
 
-"""
+    """
 )
 
 
 class MaterialRemoval(GridLayout):
 
+    """ Main class for the MRR module """
+
     res_mrr = StringProperty()
 
     def calc(self):
+
+        """ Entry method for the calculations """
 
         result = self.mrrcalc()
         self.results(result)
@@ -103,16 +109,16 @@ class MaterialRemoval(GridLayout):
         """ Getting the values and doing the calculation """
 
         try:
-            ap = self.ap.text
-            ap = ap.replace(',', '.')
-            ap = float(ap)
+            cut_depth = self.ap.text
+            cut_depth = cut_depth.replace(',', '.')
+            cut_depth = float(cut_depth)
         except ValueError:
             pass
 
         try:
-            ae = self.ae.text
-            ae = ae.replace(',', '.')
-            ae = float(ae)
+            cut_width = self.ae.text
+            cut_width = cut_width.replace(',', '.')
+            cut_width = float(cut_width)
         except ValueError:
             pass
 
@@ -125,7 +131,7 @@ class MaterialRemoval(GridLayout):
 
         # doing the calculation
         try:
-            mrr = (ap * ae * feed) / 1000
+            mrr = (cut_depth * cut_width * feed) / 1000
         except (ValueError, TypeError):
             mrr = "Please input values"
 

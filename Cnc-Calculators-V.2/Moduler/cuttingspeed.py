@@ -1,7 +1,9 @@
+""" This module hold the Cutting Data calculator and also works as the root
+    widget for all the other modules in this software  """
+
 from kivy.lang import Builder
 from kivy.properties import StringProperty
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.textinput import TextInput
 
 from Moduler.customwidgets import MyLabel
 from Moduler.customwidgets import MyTextInput
@@ -10,9 +12,9 @@ from Moduler import spiral
 from Moduler import ra
 from Moduler import materialremoval
 
+# this modules kvlang definition
 Builder.load_string(
     """
-
 <BoxLayout>:
     orientation: 'horizontal'
 
@@ -153,12 +155,11 @@ Builder.load_string(
 
 class CuttingSpeed(BoxLayout):
 
+    """ Main class for the Cutting Data calculator """
+
     # Dynamic refrence to the labels that shows the result
     res_speed = StringProperty()
     res_feed = StringProperty()
-
-    def __init__(self, **kwargs):
-        super(CuttingSpeed, self).__init__(**kwargs)
 
     def calc(self):
 
@@ -185,15 +186,15 @@ class CuttingSpeed(BoxLayout):
         """ Method for calculating spindel rpm """
 
         try:
-            cs = self.txt1.text
-            cs = cs.replace(',', '.')
-            cs = float(cs)
+            cutting_speed = self.txt1.text
+            cutting_speed = cutting_speed.replace(',', '.')
+            cutting_speed = float(cutting_speed)
 
-            md = self.txt2.text
-            md = md.replace(',', '.')
-            md = float(md)
+            mill_dia = self.txt2.text
+            mill_dia = mill_dia.replace(',', '.')
+            mill_dia = float(mill_dia)
 
-            rpm = (cs * 1000) / (3.14 * md)
+            rpm = (cutting_speed * 1000) / (3.14 * mill_dia)
 
         except ValueError:
             rpm = 0
@@ -205,15 +206,15 @@ class CuttingSpeed(BoxLayout):
         """ Method for calculating feedrate """
 
         try:
-            nt = self.txt3.text
-            nt = nt.replace(',', '.')
-            nt = float(nt)
+            num_of_teeth = self.txt3.text
+            num_of_teeth = num_of_teeth.replace(',', '.')
+            num_of_teeth = float(num_of_teeth)
 
-            ft = self.txt4.text
-            ft = ft.replace(',', '.')
-            ft = float(ft)
+            feed_pr_tooth = self.txt4.text
+            feed_pr_tooth = feed_pr_tooth.replace(',', '.')
+            feed_pr_tooth = float(feed_pr_tooth)
 
-            feed_rate = ft * spindel_rpm * nt
+            feed_rate = feed_pr_tooth * spindel_rpm * num_of_teeth
 
         except ValueError:
             feed_rate = 0
@@ -227,5 +228,3 @@ class CuttingSpeed(BoxLayout):
 
         self.res_speed = str(speed)
         self.res_feed = str(feed)
-
-

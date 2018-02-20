@@ -1,7 +1,9 @@
+""" This module hold the Helix angle calculator """
+
+from math import sin, degrees
 from kivy.uix.floatlayout import FloatLayout
 from kivy.properties import StringProperty
 from kivy.lang import Builder
-from math import sin, degrees
 
 from Moduler.customwidgets import MyLabel
 from Moduler.customwidgets import MyTextInput
@@ -78,7 +80,7 @@ Builder.load_string(
                     size_hint_y: None
                     height: "40dp"
                     Button:
-                        text: "Calculate"
+                        text: "Calculate!"
                         on_press: root.calc()
 
                 Label:
@@ -106,12 +108,13 @@ Builder.load_string(
 
 class Spiral(FloatLayout):
 
+    """ Main class for the Helix angle module """
+
     res_angle = StringProperty()
 
-    def __init__(self, **kwargs):
-        super(Spiral, self).__init__(**kwargs)
-
     def calc(self):
+
+        """ Entry method for the calculations """
 
         circumference = self.circumference()
         angle = self.angle(circumference)
@@ -136,24 +139,22 @@ class Spiral(FloatLayout):
             holedia = holedia.replace(',', '.')
             holedia = float(holedia)
 
-            cf = (holedia - milldia) * 3.14
+            circumference = (holedia - milldia) * 3.14
         except ValueError:
-            cf = 0
+            circumference = 0
 
-        return cf
+        return circumference
 
     def angle(self, circumference):
 
         """ Calculating the angle of the toolpath """
-
-        cf = circumference
 
         try:
             zstep = self.zstep.text
             zstep = zstep.replace(',', '.')
             zstep = float(zstep)
 
-            angle = (sin(1.57079633) * zstep) / cf
+            angle = (sin(1.57079633) * zstep) / circumference
             angle = degrees(angle)
         except(ValueError, ZeroDivisionError):
             angle = "Please input values"

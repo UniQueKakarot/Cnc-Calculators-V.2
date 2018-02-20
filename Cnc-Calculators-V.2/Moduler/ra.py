@@ -1,3 +1,5 @@
+""" This module contains the RA calculator """
+
 from kivy.uix.gridlayout import GridLayout
 from kivy.lang import Builder
 from kivy.properties import StringProperty
@@ -77,9 +79,14 @@ Builder.load_string(
 
 
 class Ra(GridLayout):
-    ra = StringProperty()
+
+    """ Main class for the RA module """
+
+    surface_ra = StringProperty()
 
     def calc(self):
+
+        """ Calculating RA """
 
         try:
             feed = self.feed.text
@@ -89,19 +96,19 @@ class Ra(GridLayout):
             pass
 
         try:
-            nr = self.nr.text
-            nr = nr.replace(',', '.')
-            nr = float(nr)
+            nose_radius = self.nr.text
+            nose_radius = nose_radius.replace(',', '.')
+            nose_radius = float(nose_radius)
         except ValueError:
             pass
 
         try:
-            result = ((feed**2) / (nr*24)) * 1000
+            result = ((feed**2) / (nose_radius*24)) * 1000
             result = round(result, 2)
         except(TypeError, ZeroDivisionError):
             result = "Please input values"
 
-        self.ra = str(result)
+        self.surface_ra = str(result)
 
         SurfaceRaData("Database.xlsx").filesave(self.feed.text,
                                                 self.nr.text,
