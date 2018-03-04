@@ -114,10 +114,10 @@ class Trigonometry(FloatLayout):
         print(opposite, '\n')
         print(hypotenuse)
 
-        test = 100 + opposite
+        test = 300 + opposite
 
         # assigning my listproperty some values to draw a triangle
-        self.points = [(100, 100), (400, 100), (400, test), (100, 100)]
+        self.points = [(100, 300), (300, 300), (300, test), (100, 300)]
 
         #TODO
         # made some headway on drawing the triangle after the calculations
