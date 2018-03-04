@@ -57,7 +57,7 @@ Builder.load_string(
         size_hint_x: 0.3
         pos: 0, 380
         Label:
-            text: "Side A"
+            text: "Side b"
 
         MyTextInput:
             id: sa
@@ -67,10 +67,18 @@ Builder.load_string(
             on_text_validate:
 
     BoxLayout:
+        #size_hint_y: None
+        #height: "40dp"
+        #size_hint_x: 0.3
+        pos: 180, 160
+        Image:
+            source: "triangle.png"
+
+    BoxLayout:
         size_hint_y: None
         height: "40dp"
         size_hint_x: 0.3
-        pos: 450, 380
+        pos: 450, 200
         Button:
             text: "Run"
             on_press: root.test()
@@ -114,10 +122,10 @@ class Trigonometry(FloatLayout):
         print(opposite, '\n')
         print(hypotenuse)
 
-        test = 300 + opposite
+        test = 250 + opposite
 
         # assigning my listproperty some values to draw a triangle
-        self.points = [(100, 300), (300, 300), (300, test), (100, 300)]
+        self.points = [(100, 250), (300, 250), (300, test), (100, 250)]
 
         #TODO
         # made some headway on drawing the triangle after the calculations

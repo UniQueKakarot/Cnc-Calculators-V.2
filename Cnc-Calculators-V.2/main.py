@@ -22,6 +22,7 @@ class MainBody(BoxLayout):
 class CncCalculators(App):
     """ Root class for the GUI application """
     def build(self):
+        self.load_kv("CncCalculators.kv")
         return MainBody()
 
 if __name__ == "__main__":
