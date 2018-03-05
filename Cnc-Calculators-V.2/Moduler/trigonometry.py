@@ -21,9 +21,6 @@ Builder.load_string(
         Line:
             points: self.points
 
-<<<<<<< HEAD
-
-=======
     BoxLayout:
         size_hint_y: None
         height: "40dp"
@@ -85,7 +82,7 @@ Builder.load_string(
         Button:
             text: "Run"
             on_press: root.test()
->>>>>>> 0c43e81bf1b8a49416696376e4a64db54e0c61b9
+
     """
 )
 
@@ -117,7 +114,7 @@ class Trigonometry(FloatLayout):
         angle_b = radians(angle_b)
 
         # doing the math for the opposite
-        opposite = (sin(angle_a) * side_a) / sin(angle_b) 
+        opposite = (sin(angle_a) * side_a) / sin(angle_b)
 
         # doing the math for the hypotenuse
         hypotenuse = (sin(angle_c) * side_a) / sin(angle_b)
