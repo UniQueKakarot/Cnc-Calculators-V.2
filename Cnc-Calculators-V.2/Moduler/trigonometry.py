@@ -11,7 +11,7 @@ Builder.load_string(
         Line:
             points: self.points
 
-    #Button:
+
     """
 )
 
