@@ -3,8 +3,9 @@
 from math import sin, degrees, radians
 
 from kivy.lang import Builder
-from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.gridlayout import GridLayout
 from kivy.properties import ListProperty
+from kivy.uix.checkbox import CheckBox
 
 from Moduler.customwidgets import MyLabel
 from Moduler.customwidgets import MyTextInput
@@ -22,57 +23,73 @@ Builder.load_string(
             points: self.points
 
     BoxLayout:
+        orientation: "vertical"
         size_hint_y: None
-        height: "40dp"
-        size_hint_x: 0.3
-        pos: 0, 480
-        Label:
-            text: "Angle A"
-
-        MyTextInput:
-            id: aa
-            hint_text:
-            multiline: False
-            write_tab: False
-            on_text_validate:
-
-    BoxLayout:
-        size_hint_y: None
-        height: "40dp"
-        size_hint_x: 0.3
-        pos: 0, 430
-        Label:
-            text: "Angle C"
-
-        MyTextInput:
-            id: ac
-            hint_text:
-            multiline: False
-            write_tab: False
-            on_text_validate:
-
-    BoxLayout:
-        size_hint_y: None
-        height: "40dp"
-        size_hint_x: 0.3
-        pos: 0, 380
-        Label:
-            text: "Side b"
-
-        MyTextInput:
-            id: sa
-            hint_text:
-            multiline: False
-            write_tab: False
-            on_text_validate:
-
-    BoxLayout:
-        #size_hint_y: None
-        #height: "40dp"
+        height: "150dp"
+        padding: 10
+        spacing: 7
         #size_hint_x: 0.3
-        pos: 180, 160
+        #pos: 0, 460
+        BoxLayout:
+            size_hint_y: None
+            height: "40dp"
+            Label:
+                text: "Angle A"
+
+            MyTextInput:
+                id: aa
+                hint_text:
+                multiline: False
+                write_tab: False
+                on_text_validate:
+
+        BoxLayout:
+            size_hint_y: None
+            height: "40dp"
+            Label:
+                text: "Angle C"
+
+            MyTextInput:
+                id: ac
+                hint_text:
+                multiline: False
+                write_tab: False
+                on_text_validate:        
+
+        BoxLayout:
+            size_hint_y: None
+            height: "40dp"
+            #size_hint_x: 0.3
+            #pos: 0, 360
+            Label:
+                text: "Side b"
+
+            MyTextInput:
+                id: sa
+                hint_text:
+                multiline: False
+                write_tab: False
+                on_text_validate:
+
+    BoxLayout:
+        size_hint_y: None
+        height: "187"
+        size_hint_x: None
+        width: "220"
+        pos: 450, 330
         Image:
             source: "triangle.png"
+
+    BoxLayout:
+        size_hint_y: None
+        height: "40dp"
+        size_hint_x: None
+        width: "100dp"
+        pos: 0, 200
+        Label:
+            text: "Test 1"
+        CheckBox:
+
 
     BoxLayout:
         size_hint_y: None
@@ -86,8 +103,12 @@ Builder.load_string(
     """
 )
 
+class MyCheckBox(CheckBox):
+    pass
 
-class Trigonometry(FloatLayout):
+class Trigonometry(GridLayout):
+
+    cols = 2
 
     points = ListProperty()
 
