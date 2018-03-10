@@ -5,7 +5,6 @@ from math import sin, degrees, radians
 from kivy.lang import Builder
 from kivy.uix.gridlayout import GridLayout
 from kivy.properties import ListProperty
-from kivy.uix.checkbox import CheckBox
 
 from Moduler.customwidgets import MyLabel
 from Moduler.customwidgets import MyTextInput
@@ -17,10 +16,6 @@ Builder.load_string(
     aa: aa
     ac: ac
     sa: sa
-
-    canvas:
-        Line:
-            points: self.points
 
     BoxLayout:
         orientation: "vertical"
@@ -73,26 +68,6 @@ Builder.load_string(
 
     BoxLayout:
         size_hint_y: None
-        height: "187"
-        size_hint_x: None
-        width: "220"
-        pos: 450, 330
-        Image:
-            source: "triangle.png"
-
-    BoxLayout:
-        size_hint_y: None
-        height: "40dp"
-        size_hint_x: None
-        width: "100dp"
-        pos: 0, 200
-        Label:
-            text: "Test 1"
-        CheckBox:
-
-
-    BoxLayout:
-        size_hint_y: None
         height: "40dp"
         size_hint_x: 0.3
         pos: 450, 200
@@ -100,17 +75,18 @@ Builder.load_string(
             text: "Run"
             on_press: root.test()
 
+    BoxLayout:
+        Image:
+            source: "triangle.png"
+
+
+
     """
 )
 
-class MyCheckBox(CheckBox):
-    pass
-
 class Trigonometry(GridLayout):
 
-    cols = 2
-
-    points = ListProperty()
+    cols = 1
 
     def test(self):
 
@@ -143,11 +119,6 @@ class Trigonometry(GridLayout):
         print(angle_b, '\n')
         print(opposite, '\n')
         print(hypotenuse)
-
-        test = 250 + opposite
-
-        # assigning my listproperty some values to draw a triangle
-        self.points = [(100, 250), (300, 250), (300, test), (100, 250)]
 
         #TODO
         # made some headway on drawing the triangle after the calculations
