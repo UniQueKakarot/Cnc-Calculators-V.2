@@ -11,7 +11,7 @@ from Moduler.datasaving import CuttingSpeedData
 from Moduler import spiral
 from Moduler import ra
 from Moduler import materialremoval
-from Moduler import trigonometry
+# from Moduler import trigonometry
 
 # this modules kvlang definition
 Builder.load_string(
@@ -150,10 +150,10 @@ Builder.load_string(
             font_size: 15
             Ra:
 
-        TabbedPanelItem:
-            text: 'Trigonometry'
-            font_size: 15
-            Trigonometry:
+        # TabbedPanelItem:
+            # text: 'Trigonometry'
+            # font_size: 15
+            # Trigonometry:
 
 
     """
