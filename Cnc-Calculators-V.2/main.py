@@ -11,8 +11,6 @@ Config.write()
 
 from Moduler import cuttingspeed
 
-#Builder.load_file("CncCalculators.kv")
-
 
 class MainBody(BoxLayout):
     """ Main body for the GUI application """
