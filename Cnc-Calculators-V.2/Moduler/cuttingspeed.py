@@ -153,6 +153,7 @@ Builder.load_string(
     """
 )
 
+
 class CuttingSpeed(BoxLayout):
 
     """ Main class for the Cutting Data calculator """
@@ -186,13 +187,9 @@ class CuttingSpeed(BoxLayout):
         """ Method for calculating spindel rpm """
 
         try:
-            cutting_speed = self.txt1.text
-            cutting_speed = cutting_speed.replace(',', '.')
-            cutting_speed = float(cutting_speed)
+            cutting_speed = float(self.txt1.text.replace(',', '.'))
 
-            mill_dia = self.txt2.text
-            mill_dia = mill_dia.replace(',', '.')
-            mill_dia = float(mill_dia)
+            mill_dia = float(self.txt2.text.replace(',', '.'))
 
             rpm = (cutting_speed * 1000) / (3.14 * mill_dia)
 
@@ -206,13 +203,9 @@ class CuttingSpeed(BoxLayout):
         """ Method for calculating feedrate """
 
         try:
-            num_of_teeth = self.txt3.text
-            num_of_teeth = num_of_teeth.replace(',', '.')
-            num_of_teeth = float(num_of_teeth)
+            num_of_teeth = float(self.txt3.text.replace(',', '.'))
 
-            feed_pr_tooth = self.txt4.text
-            feed_pr_tooth = feed_pr_tooth.replace(',', '.')
-            feed_pr_tooth = float(feed_pr_tooth)
+            feed_pr_tooth = float(self.txt4.text.replace(',', '.'))
 
             feed_rate = feed_pr_tooth * spindel_rpm * num_of_teeth
 
@@ -220,7 +213,6 @@ class CuttingSpeed(BoxLayout):
             feed_rate = 0
 
         return feed_rate
-
 
     def results(self, speed, feed):
 
